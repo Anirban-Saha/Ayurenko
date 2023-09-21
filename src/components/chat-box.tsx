@@ -19,13 +19,27 @@ import { Interface } from "readline";
 import { formattedText } from "@/lib/utils";
 
 const wrappedText = (text: string) => {
-  return text.split("\n").map((line, i) => (
-    <span key={i}>
-      {line}
-      <br />
-    </span>
-  ));
+  return text.split("\n").map((line, i) => {
+
+    if (line.startsWith("**") && line.endsWith("*8")) {
+      const boldText = line.slice(2, -2); 
+      return (
+        <span key={i}>
+          <strong>{boldText}</strong>
+          <br />
+        </span>
+      );
+    } else {
+      return (
+        <span key={i}>
+          {line}
+          <br />
+        </span>
+      );
+    }
+  });
 };
+
 
 interface ChatBubbleProps extends Partial<Message> {
   sources: string[];
@@ -54,16 +68,18 @@ export function ChatBubble({
           {role == "assistant" ? "Dr.Ayur  ⚕" : "You"}
         </CardTitle>
       </CardHeader>
-      <CardContent className="text-lg">
+      <CardContent className="text-lg ">
         <Balancer>{wrappedMessage}</Balancer>
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <CardDescription className="w-full">
           {sources && sources.length ? (
-            <Accordion type="single" collapsible className="w-[180vh]">
+            <Accordion type="single" collapsible className="w-full">
               {sources.map((source, index) => (
                 <AccordionItem value={`source-${index}`} key={index}>
-                  <AccordionTrigger>{`Source ${index + 1}`}</AccordionTrigger>
+                  <AccordionTrigger>{`Vedic Search ${
+                    index + 1
+                  }`}</AccordionTrigger>
                   <AccordionContent>
                     <ReactMarkdown linkTarget="_blank">
                       {formattedText(source)}
@@ -76,7 +92,7 @@ export function ChatBubble({
             <></>
           )}
         </CardDescription>
-      </CardFooter>
+      </CardFooter> */}
     </div>
   );
 }

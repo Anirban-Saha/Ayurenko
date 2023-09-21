@@ -1,33 +1,48 @@
-import { ChatBubble } from "./chat-box";
-import { Message } from "ai/react";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+"use client";
 
+import { scrollToBottom, initialMessages, getSources } from "../lib/utils";
+import { ChatBubble } from "./chat-box";
+import { useChat, Message } from "ai/react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Spinner } from "./ui/spinner";
+import { useEffect, useRef } from "react";
 
 export function Chat() {
-  const messages: Message[] = [
-    { role: "assistant", content: "hey I am your AI", id: "1" },
-    { role: "user", content: "Hey i am user", id: "2" },
-  ];
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { messages, input, handleInputChange, handleSubmit, isLoading, data } =
+    useChat({
+      initialMessages,
+    });
 
-  const sources = ["I am sources one", "I am source 2"];
+  useEffect(() => {
+    setTimeout(() => scrollToBottom(containerRef), 100);
+  }, [messages]);
+
   return (
-    <div className="rounded-xl  h-[90vh] flex flex-col justify-between ">
-      <div className="p-6 overflow-auto">
+    <div className="rounded-2xl  h-[83vh] flex flex-col justify-between ">
+      <div className="p-6 overflow-auto" ref={containerRef}>
         {messages.map(({ id, role, content }: Message, index) => (
           <ChatBubble
             key={id}
             role={role}
             content={content}
-            sources={role !== "assistant" ? [] : sources}
+            
+            sources={data?.length ? getSources(data, role, index) : []}
           />
         ))}
       </div>
-      <form className="p-4 flex clear-both mb-4">
-        <Input placeholder={"Talk to Dr.Ayur"} className="mr-2 " />
+
+      <form onSubmit={handleSubmit} className="p-5 flex clear-both ">
+        <Input
+          value={input}
+          placeholder={"Talk to Dr. Ayur"}
+          onChange={handleInputChange}
+          className="mr-2 h-17"
+        />
 
         <Button type="submit" className="w-24">
-          ASK
+          {isLoading ? <Spinner /> : "Ask"}
         </Button>
       </form>
     </div>
