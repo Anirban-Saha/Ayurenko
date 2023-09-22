@@ -11,7 +11,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "../components/ui/accordion";
 import { Balancer } from "react-wrap-balancer";
 import { Message } from "ai/react";
 import ReactMarkdown from "react-markdown";
@@ -56,43 +56,21 @@ export function ChatBubble({
   const wrappedMessage = wrappedText(content);
   return (
     <div>
-      <Card className="mb-2"></Card>
+      <Card className="mb-2 "></Card>
       <CardHeader>
         <CardTitle
           className={
             role != "assistant"
-              ? "text-green-500 dark:text-amber-500"
-              : "text-amber-500 dark:text-green-500"
+              ? "text-green-500 dark:text-green-500 font-bold "
+              : "text-amber-500 dark:text-amber-500  font-bold"
           }
         >
           {role == "assistant" ? "Dr.Ayur  ⚕" : "You"}
         </CardTitle>
       </CardHeader>
-      <CardContent className="text-lg ">
+      <CardContent className="text-xl ">
         <Balancer>{wrappedMessage}</Balancer>
       </CardContent>
-      {/* <CardFooter>
-        <CardDescription className="w-full">
-          {sources && sources.length ? (
-            <Accordion type="single" collapsible className="w-full">
-              {sources.map((source, index) => (
-                <AccordionItem value={`source-${index}`} key={index}>
-                  <AccordionTrigger>{`Vedic Search ${
-                    index + 1
-                  }`}</AccordionTrigger>
-                  <AccordionContent>
-                    <ReactMarkdown linkTarget="_blank">
-                      {formattedText(source)}
-                    </ReactMarkdown>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          ) : (
-            <></>
-          )}
-        </CardDescription>
-      </CardFooter> */}
     </div>
   );
 }

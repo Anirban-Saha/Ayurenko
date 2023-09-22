@@ -21,7 +21,7 @@ export function Chat() {
 
   return (
     <div className="rounded-2xl  h-[83vh] flex flex-col justify-between ">
-      <div className="p-6 overflow-auto" ref={containerRef}>
+      <div className="p-6 overflow-auto font-normal" ref={containerRef}>
         {messages.map(({ id, role, content }: Message, index) => (
           <ChatBubble
             key={id}
@@ -33,15 +33,15 @@ export function Chat() {
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="p-5 flex clear-both ">
+      <form onSubmit={handleSubmit} className="p-5 flex clear-both  ">
         <Input
           value={input}
-          placeholder={"Talk to Dr. Ayur"}
+          placeholder={"Talk to Dr. Ayur!"}
           onChange={handleInputChange}
-          className="mr-2 h-17"
+          className="mr-2 h-15 p-4 border-e-inherit font-medium text-base bg-none"
         />
 
-        <Button type="submit" className="w-24">
+        <Button type="submit" className="w-24 h-15">
           {isLoading ? <Spinner /> : "Ask"}
         </Button>
       </form>

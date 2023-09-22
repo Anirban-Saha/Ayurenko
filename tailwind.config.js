@@ -50,6 +50,9 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        fontFamily: {
+          'poppins': ['Poppins', 'sans-serif']
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
