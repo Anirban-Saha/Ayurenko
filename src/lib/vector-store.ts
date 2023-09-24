@@ -8,24 +8,21 @@ export async function embedAndStoreDocs(
   // @ts-ignore docs type error
   docs: Document<Record<string, any>>[]
 ) {
-  /*create and store the embeddings in the vectorStore*/
+  
   try {
     const embeddings = new OpenAIEmbeddings();
     const index = client.Index(env.PINECONE_INDEX_NAME);
-
-    //embed the PDF documents
     await PineconeStore.fromDocuments(docs, embeddings, {
       pineconeIndex: index,
       namespace: env.PINECONE_NAME_SPACE,
       textKey: "text",
     });
   } catch (error) {
-    console.log("error ", error);
-    throw new Error("Failed to load your docs !");
+    console.log("ERROR ", error);
+    throw new Error("DOCUMENT PROCESSING FAILED");
   }
 }
 
-// Returns vector-store handle to be used a retrievers on langchains
 export async function getVectorStore(client: PineconeClient) {
   try {
     const embeddings = new OpenAIEmbeddings();
@@ -39,7 +36,7 @@ export async function getVectorStore(client: PineconeClient) {
 
     return vectorStore;
   } catch (error) {
-    console.log("error ", error);
-    throw new Error("Something went wrong while getting vector store !");
+    console.log("ERROR", error);
+    throw new Error("ERROR ENCOUNTERED!");
   }
 }

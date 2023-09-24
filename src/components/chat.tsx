@@ -27,7 +27,6 @@ export function Chat() {
             key={id}
             role={role}
             content={content}
-            
             sources={data?.length ? getSources(data, role, index) : []}
           />
         ))}

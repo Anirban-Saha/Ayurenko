@@ -1,6 +1,6 @@
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 
-export default function RootLayout({ children }:any) {
+export default function RootLayout({ children }: any) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -12,5 +12,5 @@ export default function RootLayout({ children }:any) {
         </body>
       </html>
     </>
-  )
+  );
 }

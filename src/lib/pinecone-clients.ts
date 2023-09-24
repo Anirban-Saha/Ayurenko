@@ -15,10 +15,10 @@ async function createIndex(client: PineconeClient, indexName: string) {
     });
     console.log(`Wait ${env.INDEX_INIT_TIMEOUT} seconds for initialising`);
     await delay(env.INDEX_INIT_TIMEOUT);
-    console.log("Index creation successfull");
+    console.log("Index creation successfull!");
   } catch (error) {
     console.error("error ", error);
-    throw new Error("Index creation failed");
+    throw new Error("Index creation failed!");
   }
 }
 
