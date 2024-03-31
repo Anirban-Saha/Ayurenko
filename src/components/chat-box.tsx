@@ -20,9 +20,8 @@ import { formattedText } from "@/lib/utils";
 
 const wrappedText = (text: string) => {
   return text.split("\n").map((line, i) => {
-
     if (line.startsWith("**") && line.endsWith("*8")) {
-      const boldText = line.slice(2, -2); 
+      const boldText = line.slice(2, -2);
       return (
         <span key={i}>
           <strong>{boldText}</strong>
@@ -40,7 +39,6 @@ const wrappedText = (text: string) => {
   });
 };
 
-
 interface ChatBubbleProps extends Partial<Message> {
   sources: string[];
 }
@@ -56,16 +54,16 @@ export function ChatBubble({
   const wrappedMessage = wrappedText(content);
   return (
     <div>
-      <Card className="mb-2 "></Card>
+      <Card className=" "></Card>
       <CardHeader>
         <CardTitle
           className={
             role != "assistant"
               ? "text-green-500 dark:text-green-500 font-bold "
-              : "text-amber-500 dark:text-amber-500  font-bold"
+              : "text-red-400 dark:text-red-400  font-bold"
           }
         >
-          {role == "assistant" ? "Dr.Ayur  ⚕" : "You"}
+          {role == "assistant" ? "Dr.Ayur" : "You"}
         </CardTitle>
       </CardHeader>
       <CardContent className="text-xl ">
