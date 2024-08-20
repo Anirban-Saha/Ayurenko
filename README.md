@@ -1,11 +1,10 @@
-
-
-```markdown
 # Ayurenko
 
 Ayurenko is a Next.js-based web application that provides an interactive chat interface for Ayurvedic consultations. It leverages modern web technologies and AI to deliver a seamless user experience.
 
-Ayurenko Demo (https://www.youtube.com/watch?v=cNF-pDA6ucU)
+```markdown
+
+
 
 ## Demo
 
